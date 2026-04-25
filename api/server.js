@@ -61,6 +61,33 @@ app.get('/api/audio', async (req, res) => {
   }
 });
 
+app.get('/api/media-url/audio', async (req, res) => {
+
+  try {
+    const response = await fetch('https://www.makealiensgreatagain.com/api/media-url/audio');
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    res.status(500).json({
+      error: 'Failed to retrieve data'
+    });
+  }
+});
+
+app.get('/api/media-url/trailer', async (req, res) => {
+
+  try {
+    const response = await fetch('https://www.makealiensgreatagain.com/api/media-url/trailer');
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    res.status(500).json({
+      error: 'Failed to retrieve data'
+    });
+  }
+});
 
 app.get('/validators', async (req, res) => {
   try {
