@@ -33,6 +33,34 @@ app.get('/api/views', async (req, res) => {
   }
 });
 
+app.get('/api/trailer', async (req, res) => {
+
+  try {
+    const response = await fetch('https://www.makealiensgreatagain.com/api/trailer');
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    res.status(500).json({
+      error: 'Failed to retrieve data'
+    });
+  }
+});
+
+app.get('/api/audio', async (req, res) => {
+
+  try {
+    const response = await fetch('https://www.makealiensgreatagain.com/api/audio');
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    res.status(500).json({
+      error: 'Failed to retrieve data'
+    });
+  }
+});
+
 
 app.get('/validators', async (req, res) => {
   try {
@@ -47,7 +75,7 @@ app.get('/validators', async (req, res) => {
         error: 'task_id is required'
       });
     }
-    const response = await fetch(`https://www.makealiensgreatagain.com/api/views?task_id=${task_id}&page=${page}&size=${size}`);
+    const response = await fetch(`https://fed-ledger-prod.flock.io/api/v1/stats/validators?task_id=${task_id}&page=${page}&size=${size}`);
     const data = await response.json();
     res.json(data);
   } catch (err) {
